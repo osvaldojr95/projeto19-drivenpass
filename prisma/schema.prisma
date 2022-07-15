@@ -2,10 +2,70 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id       Int    @id @default(autoincrement())
+    email    String @unique
+    password String
+
+    Credential Credential[]
+    Note       Note[]
+    Wifi       Wifi[]
+    Card       Card[]
+    @@map("users")
+}
+
+model Credential {
+    id       Int    @id @default(autoincrement())
+    userId   Int
+    tittle   String @unique
+    url      String
+    username String
+    password String
+
+    user User @relation(fields: [userId], references: [id])
+    @@map("credentials")
+}
+
+model Note {
+    id         Int    @id @default(autoincrement())
+    userId     Int
+    tittle     String @unique
+    annotation String
+
+    user User @relation(fields: [userId], references: [id])
+    @@map("notes")
+}
+
+model Wifi {
+    id          Int    @id @default(autoincrement())
+    userId      Int
+    tittle      String @unique
+    networkName String
+    password    String
+
+    user User @relation(fields: [userId], references: [id])
+    @@map("wifi")
+}
+
+model Card {
+    id           Int     @id @default(autoincrement())
+    userId       Int
+    tittle       String  @unique
+    number       String
+    fullName     String
+    securityCode String
+    password     String
+    isVitual     Boolean
+    type         String
+
+    user User @relation(fields: [userId], references: [id])
+    @@map("cards")
 }
