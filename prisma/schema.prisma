@@ -19,6 +19,7 @@ model User {
     Note       Note[]
     Wifi       Wifi[]
     Card       Card[]
+    Session    Session[]
     @@map("users")
 }
 
@@ -68,4 +69,13 @@ model Card {
 
     user User @relation(fields: [userId], references: [id])
     @@map("cards")
+}
+
+model Session {
+    id      Int    @id @default(autoincrement())
+    userId  Int    @unique
+    session String
+
+    user User @relation(fields: [userId], references: [id])
+    @@map("sessions")
 }
