@@ -2,7 +2,6 @@ import { v4 as uuid } from "uuid";
 import { User } from "@prisma/client";
 import { CreateSessionData } from "../interfaces/sessionInterface.js";
 import sessionRepository from "../repository/sessionRepository.js";
-import "../config/config.js";
 
 async function newSession(user: User) {
     const sessionExist = await sessionRepository.findByUserId(user.id);

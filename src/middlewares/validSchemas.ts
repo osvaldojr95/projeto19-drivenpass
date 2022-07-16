@@ -1,7 +1,8 @@
 import { stripHtml } from "string-strip-html";
+import { Request, Response, NextFunction } from "express";
 
 export default function validSchema(schema) {
-    return async (req, res, next) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
         const schemaBody = {};
         for (const key in req.body) {
             if (typeof schemaBody[key] === "string") {

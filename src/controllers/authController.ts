@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import sessionService from "../services/sessionService.js";
 import userService from "../services/userService.js";
 
-export async function signUp(req, res) {
+export async function signUp(req: Request, res: Response) {
     const { email, password } = res.locals.body;
     console.log({ email, password });
     await userService.emailExist(email);
@@ -9,7 +10,7 @@ export async function signUp(req, res) {
     res.sendStatus(201);
 }
 
-export async function signIn(req, res) {
+export async function signIn(req: Request, res: Response) {
     const { email, password } = res.locals.body;
     const user = await userService.findByEmail(email);
     await userService.verifyPassword(user, password);
