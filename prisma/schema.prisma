@@ -48,7 +48,7 @@ model Note {
 model Wifi {
     id          Int    @id @default(autoincrement())
     userId      Int
-    title       String @unique
+    title       String
     networkName String
     password    String
 
@@ -64,7 +64,7 @@ model Card {
     fullName     String
     securityCode String
     password     String
-    isVirtual     Boolean
+    isVirtual    Boolean
     type         String
 
     user User @relation(fields: [userId], references: [id])

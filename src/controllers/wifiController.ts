@@ -1,31 +1,30 @@
 import { Request, Response } from "express";
-import cardService from "../services/cardService.js";
+import wifiService from "../services/wifiService.js";
 
 export async function create(req: Request, res: Response) {
-    const card = res.locals.body;
+    const wifi = res.locals.body;
     const user = res.locals.user;
-    await cardService.ExistByTitle(card.title);
-    await cardService.insert(card, user);
+    await wifiService.insert(wifi, user);
     return res.sendStatus(201);
 }
 
 export async function getAll(req: Request, res: Response) {
     const user = res.locals.user;
-    const cards = await cardService.findByUserId(user.id);
-    return res.status(200).send({ cards });
+    const wifi = await wifiService.findByUserId(user.id);
+    return res.status(200).send({ wifi });
 }
 
 export async function getById(req: Request, res: Response) {
     const { id } = req.params;
     const user = res.locals.user;
-    const card = await cardService.findById(+id, user);
-    return res.status(200).send(card);
+    const wifi = await wifiService.findById(+id, user);
+    return res.status(200).send(wifi);
 }
 
 export async function remove(req: Request, res: Response) {
     const { id } = req.params;
     const user = res.locals.user;
-    await cardService.findById(+id, user);
-    await cardService.remove(+id);
+    await wifiService.findById(+id, user);
+    await wifiService.remove(+id);
     return res.sendStatus(204);
 }

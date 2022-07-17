@@ -1,5 +1,4 @@
 import { prisma } from "./../config/database.js";
-import { Session } from "@prisma/client";
 import { CreateSessionData } from "../interfaces/sessionInterface.js";
 
 async function findBySession(sessionId: string) {
