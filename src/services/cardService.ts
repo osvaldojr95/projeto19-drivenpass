@@ -20,7 +20,7 @@ async function insert(data, user: User) {
         securityCode: securityCodeHash,
     };
 
-    await cardRepository.insert(card);
+    return await cardRepository.insert(card);
 }
 
 async function ExistByTitle(title: string) {

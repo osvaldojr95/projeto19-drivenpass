@@ -4,8 +4,8 @@ import wifiService from "../services/wifiService.js";
 export async function create(req: Request, res: Response) {
     const wifi = res.locals.body;
     const user = res.locals.user;
-    await wifiService.insert(wifi, user);
-    return res.sendStatus(201);
+    const created = await wifiService.insert(wifi, user);
+    return res.status(201).send(created);
 }
 
 export async function getAll(req: Request, res: Response) {

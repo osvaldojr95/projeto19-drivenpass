@@ -10,7 +10,7 @@ async function insert(data, user: User) {
         annotation: data.annotation,
     };
 
-    await noteRepository.insert(note);
+    return await noteRepository.insert(note);
 }
 
 async function ExistByTitle(title: string) {

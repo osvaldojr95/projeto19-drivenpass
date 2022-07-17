@@ -16,7 +16,7 @@ async function insert(data, user: User) {
         password: passwordHash,
     };
 
-    await credentialRepository.insert(credential);
+    return await credentialRepository.insert(credential);
 }
 
 async function credentialExistByTitle(title: string) {

@@ -2,25 +2,25 @@ import { prisma } from "./../config/database.js";
 import { CreateNoteData } from "../interfaces/noteInterface.js";
 
 async function findById(id: number) {
-    return prisma.note.findUnique({
+    return await prisma.note.findUnique({
         where: { id },
     });
 }
 
 async function findByTitle(title: string) {
-    return prisma.note.findUnique({
+    return await prisma.note.findUnique({
         where: { title },
     });
 }
 
 async function findByUserId(userId: number) {
-    return prisma.note.findMany({
+    return await prisma.note.findMany({
         where: { userId },
     });
 }
 
 async function insert(createNoteData: CreateNoteData) {
-    await prisma.note.create({
+    return await prisma.note.create({
         data: createNoteData,
     });
 }

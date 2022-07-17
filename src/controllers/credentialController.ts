@@ -5,8 +5,8 @@ export async function create(req: Request, res: Response) {
     const credential = res.locals.body;
     const user = res.locals.user;
     await credentialService.credentialExistByTitle(credential.title);
-    await credentialService.insert(credential, user);
-    return res.sendStatus(201);
+    const created = await credentialService.insert(credential, user);
+    return res.status(201).send(created);
 }
 
 export async function getAll(req: Request, res: Response) {

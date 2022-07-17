@@ -15,7 +15,7 @@ async function insert(data, user: User) {
         password: passwordHash
     };
 
-    await wifiRepository.insert(wifi);
+    return await wifiRepository.insert(wifi);
 }
 
 async function findByUserId(userId: number) {

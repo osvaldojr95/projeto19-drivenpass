@@ -5,8 +5,8 @@ export async function create(req: Request, res: Response) {
     const card = res.locals.body;
     const user = res.locals.user;
     await cardService.ExistByTitle(card.title);
-    await cardService.insert(card, user);
-    return res.sendStatus(201);
+    const created = await cardService.insert(card, user);
+    return res.status(201).send(created);
 }
 
 export async function getAll(req: Request, res: Response) {
