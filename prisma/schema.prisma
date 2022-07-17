@@ -64,7 +64,7 @@ model Card {
     fullName     String
     securityCode String
     password     String
-    isVitual     Boolean
+    isVirtual     Boolean
     type         String
 
     user User @relation(fields: [userId], references: [id])
